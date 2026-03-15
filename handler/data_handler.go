@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/LightBulbClub/driver-monitor/config"
-	"github.com/LightBulbClub/driver-monitor/data"
+	"github.com/LightBulbClub/sugarcane/config"
+	"github.com/LightBulbClub/sugarcane/data"
 
 	"github.com/gofiber/fiber/v2"
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/LightBulbClub/driver-monitor/analysis"
-	"github.com/LightBulbClub/driver-monitor/service"
+	"github.com/LightBulbClub/sugarcane/analysis"
+	"github.com/LightBulbClub/sugarcane/service"
 )
 
 func main() {

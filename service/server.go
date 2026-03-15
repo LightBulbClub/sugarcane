@@ -3,8 +3,8 @@ package service
 import (
 	"log"
 
-	"github.com/LightBulbClub/driver-monitor/config"
-	"github.com/LightBulbClub/driver-monitor/handler"
+	"github.com/LightBulbClub/sugarcane/config"
+	"github.com/LightBulbClub/sugarcane/handler"
 
 	"github.com/gofiber/fiber/v2"
 )

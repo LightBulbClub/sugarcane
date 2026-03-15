@@ -4,8 +4,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/LightBulbClub/driver-monitor/config"
-	"github.com/LightBulbClub/driver-monitor/data"
+	"github.com/LightBulbClub/sugarcane/config"
+	"github.com/LightBulbClub/sugarcane/data"
 
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 )

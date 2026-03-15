@@ -5,8 +5,8 @@ import (
 	"math"
 	"time"
 
-	"github.com/LightBulbClub/driver-monitor/config"
-	"github.com/LightBulbClub/driver-monitor/data"
+	"github.com/LightBulbClub/sugarcane/config"
+	"github.com/LightBulbClub/sugarcane/data"
 )
 
 // DriverCooldown 记录每个司机的最近一次告警时间，用于静默处理
