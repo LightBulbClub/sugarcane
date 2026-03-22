@@ -1,11 +1,16 @@
 package main
 
 import (
-	"github.com/LightBulbClub/driver-monitor/analysis"
-	"github.com/LightBulbClub/driver-monitor/service"
+	"github.com/LightBulbClub/sugarcane/analysis"
+	"github.com/LightBulbClub/sugarcane/config"
+	"github.com/LightBulbClub/sugarcane/service"
 )
 
 func main() {
+	// 0. 加载配置
+	if err := config.Load("config.toml"); err != nil {
+		panic("加载配置失败: " + err.Error())
+	}
 	// 1. 初始化数据库连接
 	service.InitInfluxDB()
 	defer service.CloseInfluxDB()

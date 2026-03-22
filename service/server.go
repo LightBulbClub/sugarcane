@@ -3,8 +3,8 @@ package service
 import (
 	"log"
 
-	"github.com/LightBulbClub/driver-monitor/config"
-	"github.com/LightBulbClub/driver-monitor/handler"
+	"github.com/LightBulbClub/sugarcane/config"
+	"github.com/LightBulbClub/sugarcane/handler"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -19,6 +19,6 @@ func StartServer() {
 	app.Post("/data/upload", handler.DataUploadHandler)
 
 	// 启动服务
-	log.Printf("Fiber server starting on %s...", config.ListenPort)
-	log.Fatal(app.Listen(config.ListenPort))
+	log.Printf("Fiber server starting on %s...", config.Cfg.Server.ListenPort)
+	log.Fatal(app.Listen(config.Cfg.Server.ListenPort))
 }

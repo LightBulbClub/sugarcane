@@ -1,37 +1,39 @@
 package service
 
 import (
-	"context"
 	"log"
 
-	"github.com/LightBulbClub/driver-monitor/config"
-	"github.com/LightBulbClub/driver-monitor/data"
+	"github.com/LightBulbClub/sugarcane/config"
+	"github.com/LightBulbClub/sugarcane/data"
 
-	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
+	"github.com/InfluxCommunity/influxdb3-go/v2/influxdb3"
 )
-
-// InfluxClient 暴露的客户端实例
-var InfluxClient influxdb2.Client
 
 // InitInfluxDB 初始化 InfluxDB 连接
 func InitInfluxDB() {
-	log.Printf("Connecting to InfluxDB at %s...", config.InfluxURL)
+	log.Printf("Connecting to InfluxDB at %s...", config.Cfg.Influx.URL)
 
 	// 将客户端赋值给全局 App 结构体
-	data.GlobalApp.InfluxClient = influxdb2.NewClient(config.InfluxURL, config.InfluxToken)
-
-	// 检查连接状态
-	_, err := data.GlobalApp.InfluxClient.Health(context.Background())
+	client, err := influxdb3.New(
+		influxdb3.ClientConfig{
+			Token:    config.Cfg.Influx.Token,
+			Host:     config.Cfg.Influx.URL,
+			Database: config.Cfg.Influx.Database,
+		})
 	if err != nil {
-		log.Fatalf("Failed to connect to InfluxDB: %v", err)
+		log.Fatalf("Failed to create&connect to InfluxDB client: %v", err)
 	}
+	data.GlobalApp.InfluxClient = client
 	log.Println("Successfully connected to InfluxDB!")
 }
 
 // CloseInfluxDB 关闭 InfluxDB 连接
 func CloseInfluxDB() {
 	if data.GlobalApp.InfluxClient != nil {
-		data.GlobalApp.InfluxClient.Close()
+		err := data.GlobalApp.InfluxClient.Close()
+		if err != nil {
+			log.Fatal("Error closing InfluxDB connection: ", err)
+		}
 		log.Println("InfluxDB connection closed.")
 	}
 }
