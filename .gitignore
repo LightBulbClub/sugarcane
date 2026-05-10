@@ -1,2 +1,5 @@
 .idea
 config.toml
+sugarcane
+*.exe
+.local

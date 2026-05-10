@@ -19,6 +19,7 @@ type InfluxConfig struct {
 
 type ServerConfig struct {
 	ListenPort string `toml:"listen_port"`
+	APIToken   string `toml:"api_token"`
 }
 
 type AnalysisConfig struct {
@@ -86,8 +87,14 @@ func Load(path string) error {
 	if fileCfg.Influx.Measurement != "" {
 		Cfg.Influx.Measurement = fileCfg.Influx.Measurement
 	}
+	if fileCfg.Influx.Database != "" {
+		Cfg.Influx.Database = fileCfg.Influx.Database
+	}
 	if fileCfg.Server.ListenPort != "" {
 		Cfg.Server.ListenPort = fileCfg.Server.ListenPort
+	}
+	if fileCfg.Server.APIToken != "" {
+		Cfg.Server.APIToken = fileCfg.Server.APIToken
 	}
 	if fileCfg.Analysis.HeartRateMin != 0 {
 		Cfg.Analysis.HeartRateMin = fileCfg.Analysis.HeartRateMin
